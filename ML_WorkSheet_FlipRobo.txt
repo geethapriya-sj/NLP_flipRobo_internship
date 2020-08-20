@@ -1,0 +1,88 @@
+1. A
+2. D
+3. C
+4. C
+5. C
+6. B
+7.C
+8.B,D
+9. A,D
+10. A,B,D
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+11. What are outliers and Explain IQR for outlier detection.
+  
+  Outliers are highest or lowest extreme values Compared to other observations in dataset. It may change the overall pattern on a sample.
+  e.g when we calculate the average salary of employee. If we include CEO salary which is extreme compared to rest of average employee.
+  Here the CEO salary is outlier eventhough the data is correct.
+  
+  e.g There can be a dataentry error. When we have input of weight of a person of age 5 as 200 kg. There will be chance of typing mistake. 20 is typed as 200.
+  It will be considered as outlier. these datas nned to be handled before we pass to model.
+  
+  We need to identify the outliers in the data by using pandas describe method or using boxplot where will we will see the min , 25 percentile(Q1) , 
+  50 percentile(Q2), 75 percentile(Q3) and MAX.
+  
+  We can calculate IQR = 75 percentile(Q3) - 25 percentile(Q1).
+  
+  Any datapoint X > (Q3 + IQR * 1.5) or X < (Q1 - IQR * 1.5) is considered as outlier.
+  
+  There are many ways to handle Outlier using IQR , Z-Score , Standard deviation.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+12.What is difference between bagging and boosting algorithm
+
+  Bagging: Bagging is a ensembling technique which a dataset will will be divided to n-number of random samples and each sample is given to n - number of models(base learner) to train
+  If we provide the test data , it will pass the test data vto n- models to predict the target. then it will consolidate all the predicted value of different models and go with
+  one having majority votes. e., 0ut of 5 models, 4 models predicted as 1 and one model predicted as 0. then it will go with predicted value 1.
+  
+  bagging will happen in parallel.
+  
+  e.g., Random forest classifier
+  
+  Boosting:
+  Boosting is also a ensembling technique which will use multiple base learners. Here each base learner will be weak learner.  All weak learners are combined to become strong learner
+  A dataset will give weight equally will be passed to Weaklearner_A ,  the datapoints which it classified wrongly will give higher weightage to weakLearner_B, 
+ the datapoint misclassified by weakLearner_B will be passed to WeakLearner_C
+  to train it. 	
+  
+  Boosting will happen in sequential like WL_B has to wait for WL_A to complete. WL_D has to wait for WL_B to complete. it will go step by step.
+  
+  e.b Adaboost, Gradient Boosting
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13.What is adjusted R2 in logistic regression.How it is calculated
+   r2 will  not be applicable for logistic regression.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+14. D/B Standardization and normalization
+
+    Normalization :
+	It's is used to scale down the value between 0 -1 . For e.g ., we will have dataset having feature height (inches) ,age in years , weight in pounds. 
+	Each feature will be get measured in different unit. If we compare the magnitude between the values of feature, there will be a huge differnce. In age ,
+	the values are small and in height the magnitude of values are large. So the the feature having higher magnitude will dominate other features which will 
+	eventually lead to poor performance of model.
+	
+	We can use Normalization technique Espcecially for alogirthms like linear regression,logistic regression etc., which will use the gradient desent optimization technique, 
+	we need to scale the data. To ensure the gradient desent moves smoothly towars its minima , we need to scale the data.
+	
+	
+	Standard Deviation:
+	Standardization will turns everything  into mean = 0 and Standarddeviation = 1. Here the vaues will not be in particular range.
+	
+	We can apply standardization technique for the data which follow guassian distribution(normal distribution)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+15. Cross-validation ? Advantage and disadvantage
+
+    We used to split the dataset in the way some percent of data we will use for training the model and rest of remaining is the test data 
+	we will use train_test_split method to partion the input data to train and test by giving how much of test data we want.
+	We will use the Train_partion to train it and we will use Test data to determine the accuracy.
+	
+	Here we could miss some information about the data which we have not used for training. If our data is huge and our train and test data has same distribution of data.then its fine.
+	
+	This problem can be overcome by Cross-validation , It will accept the parameter 'K' - split the data randomly in to K-folds. 
+	Then fit the model , record the accuracy score. repeat it for all k-folds and , we can take average accuracy score.
+	This we can called as re-sampling procedure which we will help to efficiently measure the accuracy score.
+	
+	Also, we can use cross-validation for hyper parameter tuning. We can gridserachCV or RandomSerachCV where 
+	it will use the cv parameter where we will mention no.of folds we want.
+	
+	Dis-advantage
+	if we have highest k , it will take more computation power, as it needs to train the model k -times. Best approach is having k between 5 - 10.
+	if we have more k , it will take time to process.
